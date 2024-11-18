@@ -11,30 +11,23 @@ export class HttpInterceptorService implements HttpInterceptor {
   token!: string | undefined;
   exp_token!: number | undefined;
 
-  constructor() {
-   
-  }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (req.headers.get('skip')) return next.handle(req);
 
-    const headers: { [key: string]: string } = {}; // Tipagem ajustada para string
+    const headers: Record<string, string> = {};
     let authReq = null;
 
-    // Copiar todos os headers da requisição original
     for (const header of req.headers.keys()) {
       const value = req.headers.get(header);
       if (value) {
-        headers[header] = value; // Apenas atribuir se o valor não for null
+        headers[header] = value;
       }
     }
 
-    // Adicionar o header 'Authorization' se não estiver presente
     if (!headers['authorization']) {
-      headers['authorization'] = `bearer ${this.token}`; // Garante que o valor seja string
+      headers['authorization'] = `bearer ${this.token}`;
     }
 
-    // Clonar a requisição com os headers ajustados
     authReq = req.clone({
       setHeaders: headers,
     });
@@ -47,3 +40,4 @@ export class HttpInterceptorService implements HttpInterceptor {
     );
   }
 }
+

@@ -1,14 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ILogin } from '../../../shared/interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   constructor(private http: HttpClient) { }
-
-  async login() { }
-
-  async logout() { }
+   
+  async login(data: ILogin) {
+    console.log(data);
+    return true;
+  }
+   
+  async logout(data: ILogin) {
+    console.log(data);
+    return true;
+  }
 }
