@@ -1,19 +1,36 @@
-import { HttpClient } from '@angular/common/http';
+// src/app/core/services/person-activity/person-activity.service.ts
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPersonActivity } from '../../../shared/interfaces/person_activity';
+import { environment } from '../../../../env/env';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PersonActivityService {
 
-   
   constructor(private http: HttpClient) {}
 
-    
-  async create(data: IPersonActivity) {
-    console.log(data);
-    return true;
+  // Criar a associação entre pessoa e atividade
+  async create(data: { personId: string, activityId: string }) {
+    try {
+
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+      
+      // Configura o cabeçalho com o token
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      await lastValueFrom (       
+      this.http.post<IPersonActivity>(`${environment.backend_url}/person_activity/create`, data, { headers }));
+    } catch (error) {
+      console.error('Erro ao criar a associação', error);
+      throw error;
+    }
   }
     
   async get(id: string) {
@@ -22,16 +39,31 @@ export class PersonActivityService {
   }
     
   async list() {
-    return true;
+
+    try {
+
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+      
+      // Configura o cabeçalho com o token
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      await lastValueFrom (       
+      this.http.get<IPersonActivity>(`${environment.backend_url}/person_activity/list`,  { headers }));
+    } catch (error) {
+      console.error('Erro ao criar a associação', error);
+      throw error;
+    }
   }
     
-  async update(id: string, data: IPersonActivity) {
-    console.log(id, data);
-    return true;
-  }
-    
+      
   async delete(id: string) {
-    console.log(id);
+    
+    await lastValueFrom (
+      this.http.delete(`${environment.backend_url}/person_activity/delete${id}`));
     return true;
   }
 }

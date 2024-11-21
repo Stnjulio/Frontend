@@ -1,1 +1,26 @@
-<p>activity works!</p>
+<div class="activity-container">
+    <h2>Criar Atividade</h2>
+  
+    <!-- Exibindo a mensagem de sucesso ou erro -->
+    <div *ngIf="message" class="message">
+      {{ message }}
+    </div>
+  
+    <!-- Formulário para criar uma atividade -->
+    <form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+      <label for="name">Nome</label>
+      <input id="name" formControlName="name" type="text" />
+  
+      <label for="description">Descrição</label>
+      <textarea id="description" formControlName="description"></textarea>
+  
+      <label for="startDate">Data de Início</label>
+      <input id="startDate" formControlName="startDate" type="date" />
+  
+      <label for="endDate">Data de Fim</label>
+      <input id="endDate" formControlName="endDate" type="date" />
+  
+      <button type="submit" [disabled]="activityForm.invalid">Criar Atividade</button>
+    </form>
+  </div>
+  

@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2>Login</h2>
+
+  <!-- Formulário de login -->
+  <form [formGroup]="loginForm">
+    <!-- Campo de email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Digite seu email"
+      />
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="error">
+        <small *ngIf="loginForm.get('email')?.hasError('required')">O email é obrigatório.</small>
+        <small *ngIf="loginForm.get('email')?.hasError('email')">Digite um email válido.</small>
+      </div>
+    </div>
+
+    <!-- Campo de senha -->
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input
+        id="password"
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Digite sua senha"
+      />
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="error">
+        <small *ngIf="loginForm.get('password')?.hasError('required')">A senha é obrigatória.</small>
+        <small *ngIf="loginForm.get('password')?.hasError('minlength')">A senha deve ter no mínimo 6 caracteres.</small>
+      </div>
+    </div>
+
+    <!-- Botão de login -->
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="login()">Entrar</button>
+    <br />
+    <p>Não tem conta? <a routerLink="/auth/register">Cadastre-se</a></p>
+  </form>
+</div>

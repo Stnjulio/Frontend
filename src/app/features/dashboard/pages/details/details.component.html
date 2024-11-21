@@ -1,0 +1,28 @@
+<div class="details-container">
+    <h2>Vincular Pessoa a Atividade</h2>
+  
+    <!-- Mensagem de sucesso ou erro -->
+    <div *ngIf="message" class="message">
+      {{ message }}
+    </div>
+  
+    <!-- Formulário -->
+    <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+      <label for="person">Pessoa</label>
+      <select id="person" formControlName="personId">
+        <option *ngFor="let person of people" [value]="person.id">
+          {{ person.nome }}
+        </option>
+      </select>
+  
+      <label for="activity">Atividade</label>
+      <select id="activity" formControlName="activityId">
+        <option *ngFor="let activity of activities" [value]="activity.id">
+          {{ activity.name }}
+        </option>
+      </select>
+  
+      <button type="submit" [disabled]="detailsForm.invalid">Vincular</button>
+    </form>
+  </div>
+  

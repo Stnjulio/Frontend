@@ -1,6 +1,5 @@
-// src/app/app.routes.ts
-import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { AppPreRoute } from './app.pre-routes';
 import { CoreModule } from './core/core.module';
 
@@ -13,7 +12,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

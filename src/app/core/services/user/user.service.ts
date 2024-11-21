@@ -1,36 +1,33 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { environment } from '../../../../env/env';
 import { IRegister } from '../../../shared/interfaces/register';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-   
   constructor(private http: HttpClient) {}
 
-    
+  // Método para criar um usuário
   async create(data: IRegister) {
-    console.log(data);
-    return true;
+    const {
+      name, email, password, telefone, nome, endereco
+    } = data;
+    try {
+      const user = await lastValueFrom(
+        this.http.post<IRegister>(`${environment.backend_url}/user/create`, {name, email, password, telefone, nome, endereco})
+      );
+      if (!user) {
+        return false;
+      }
+      return user;
+    } catch (error) {
+      console.error('Erro ao criar usuário', error);
+      throw new Error('Erro ao criar usuário');
+    }
   }
     
-  async get(id: string) {
-    console.log(id);
-    return true;
-  }
-    
-  async list() {
-    return true;
-  }
-    
-  async update(id: string, data: IRegister) {
-    console.log(id, data);
-    return true;
-  }
-    
-  async delete(id: string) {
-    console.log(id);
-    return true;
-  }
+  // Métodos para buscar, listar e deletar usuários seguem aqui...
 }

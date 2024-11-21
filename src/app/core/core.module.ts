@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './interceptors/http-interceptor.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
   ],

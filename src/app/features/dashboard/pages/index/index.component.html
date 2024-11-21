@@ -1,1 +1,12 @@
-<p>index works!</p>
+
+  <!-- Botões de navegação -->
+  <div class="navigation-buttons">
+    <button routerLink='/details' routerLinkActive="active" class="btn btn-primary">Ir para home</button>
+    <button routerLink='/person' routerLinkActive="active" class="btn btn-primary">Ir para Pessoas</button>
+    <button routerLink='/activity' routerLinkActive="active" class="btn btn-primary">Ir para Atividades</button>
+    <button (click)="logout()" routerLinkActive="active" class="btn btn-primary">deslogar</button>
+    
+  </div>
+  
+<router-outlet></router-outlet>
+

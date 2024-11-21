@@ -1,3 +1,4 @@
+//src/app/features/dashboard/pages/index/index.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexComponent } from './index.component';

@@ -1,26 +1,26 @@
-// app/app.module.ts
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent } from './app.component';
-import { registerLocaleData } from '@angular/common';
-import pt from '@angular/common/locales/pt';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AppRoutesModule } from './app.routes';
-import { CoreModule } from './core/core.module';
-
-registerLocaleData(pt);
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { AuthModule } from './features/auth/auth.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; // Adicionando o HttpClientModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutesModule } from './app.routes'; // Mantendo a importação do AppRoutesModule
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
+    AuthModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutesModule,  // Importando as rotas configuradas aqui
+    HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutesModule,
-    RouterModule,
-    CoreModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
