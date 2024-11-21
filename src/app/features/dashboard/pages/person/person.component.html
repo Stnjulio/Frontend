@@ -1,45 +1,71 @@
-<!-- src/app/features/dashboard/pages/person/person.component.html -->
 <div class="person-container">
-    <h2>Criar Pessoa</h2>
-    
-    <!-- Exibindo a mensagem de sucesso ou erro -->
-    <div *ngIf="message" class="message">
-      {{ message }}
-    </div>
-    
-    <!-- Formulário para criar uma pessoa -->
-    <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
-      <label for="nome">Nome</label>
-      <input id="nome" formControlName="nome" type="text" />
-  
-      <label for="telefone">Telefone</label>
-      <input id="telefone" formControlName="telefone" type="text" />
-  
-      <label for="email">Email</label>
-      <input id="email" formControlName="email" type="email" />
-  
-      <div formGroupName="endereco">
-        <h3>Endereço</h3>
-        <label for="cep">CEP</label>
-        <input id="cep" formControlName="cep" type="text" />
-  
-        <label for="logradouro">Logradouro</label>
-        <input id="logradouro" formControlName="logradouro" type="text" />
-  
-        <label for="complemento">Complemento</label>
-        <input id="complemento" formControlName="complemento" type="text" />
-  
-        <label for="bairro">Bairro</label>
-        <input id="bairro" formControlName="bairro" type="text" />
-  
-        <label for="localidade">Localidade</label>
-        <input id="localidade" formControlName="localidade" type="text" />
-  
-        <label for="uf">UF</label>
-        <input id="uf" formControlName="uf" type="text" />
-      </div>
-  
-      <button type="submit" [disabled]="personForm.invalid">Criar Pessoa</button>
-    </form>
+  <h2>Criar Pessoa</h2>
+
+  <!-- Exibindo a mensagem de sucesso ou erro -->
+  <div *ngIf="message" class="message">
+    {{ message }}
   </div>
-  
+
+  <!-- Formulário para criar uma pessoa -->
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" formControlName="telefone" type="text" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" />
+      </div>
+    </div>
+
+    <div class="address-group">
+      <h3>Endereço</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cep">CEP</label>
+          <input id="cep" formControlName="cep" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="logradouro">Logradouro</label>
+          <input id="logradouro" formControlName="logradouro" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="complemento">Complemento</label>
+          <input id="complemento" formControlName="complemento" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input id="bairro" formControlName="bairro" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="localidade">Localidade</label>
+          <input id="localidade" formControlName="localidade" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="uf">UF</label>
+          <input id="uf" formControlName="uf" type="text" />
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="personForm.invalid">Criar Pessoa</button>
+  </form>
+</div>

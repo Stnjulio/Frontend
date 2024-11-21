@@ -1,4 +1,4 @@
-//src/app/features/dashboard/pages/details/details.component.ts
+// src/app/features/dashboard/pages/details/details.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivityService } from '../../../../core/services/activity/activity.service';
@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   detailsForm!: FormGroup;
   people: IPerson[] = [];
   activities: IActivity[] = [];
-  message: string = '';
+  message = '';
 
   constructor(
     private fb: FormBuilder,
@@ -70,6 +70,38 @@ export class DetailsComponent implements OnInit {
         console.error('Erro ao criar vínculo:', error);
         this.message = 'Erro ao criar vínculo.';
       }
+    }
+  }
+
+  // Deletar pessoa
+  async onDeletePerson(id: string) {
+    try {
+      const success = await this.personService.delete(id);
+      if (success) {
+        this.message = 'Pessoa excluída com sucesso!';
+        this.loadPeople(); // Recarregar a lista de pessoas após exclusão
+      } else {
+        this.message = 'Erro ao excluir pessoa.';
+      }
+    } catch (error) {
+      this.message = 'Erro ao excluir pessoa.';
+      console.error('Erro ao excluir pessoa:', error);
+    }
+  }
+
+  // Deletar atividade
+  async onDeleteActivity(id: string) {
+    try {
+      const success = await this.activityService.delete(id);
+      if (success) {
+        this.message = 'Atividade excluída com sucesso!';
+        this.loadActivities(); // Recarregar a lista de atividades após exclusão
+      } else {
+        this.message = 'Erro ao excluir atividade.';
+      }
+    } catch (error) {
+      this.message = 'Erro ao excluir atividade.';
+      console.error('Erro ao excluir atividade:', error);
     }
   }
 }

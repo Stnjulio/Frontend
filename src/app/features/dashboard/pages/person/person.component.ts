@@ -12,7 +12,7 @@
   export class PersonComponent {
 
     personForm!: FormGroup;  // Formulário para criar uma pessoa
-    message: string = '';  // Mensagem de sucesso ou erro
+    message= '';  // Mensagem de sucesso ou erro
 
     constructor(
       private fb: FormBuilder,  // Serviço para criar formulários reativos
@@ -43,7 +43,7 @@
       if (this.personForm.valid) {
         try {
           const personData: IPerson = this.personForm.value;
-          const response = await this.personService.create(personData);
+          await this.personService.create(personData);
           
       
         } catch (error) {

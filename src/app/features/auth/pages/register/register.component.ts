@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../../../core/services/user/user.service';
 import { IRegister } from '../../../../shared/interfaces/register';
 import { Router } from '@angular/router';
-import { IPerson } from '../../../../shared/interfaces/person';
+
 
 @Component({
   selector: 'app-register',
@@ -66,7 +66,7 @@ export class RegisterComponent {
                  
         };
 
-        const response = await this.userService.create(data);
+        await this.userService.create(data);
         
       } catch (error) {
         // Exibindo erro

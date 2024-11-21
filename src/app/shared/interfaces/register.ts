@@ -1,6 +1,6 @@
 //src/interfaces/register.ts
 import { IAddress } from "./address";
-import { IPerson } from "./person";
+
 
 export interface IRegister {
     name: string;

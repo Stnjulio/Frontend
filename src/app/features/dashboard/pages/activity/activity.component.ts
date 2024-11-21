@@ -31,7 +31,7 @@ export class ActivityComponent implements OnInit {
   onSubmit(): void {
     if (this.activityForm.valid) {
       const activityData: IActivity = this.activityForm.value;
-      this.activityService.create(activityData).then(response => {
+      this.activityService.create(activityData).then(() => {
         this.message = 'Atividade criada com sucesso!';
         this.activityForm.reset(); // Resetando o formulário após o sucesso
       }).catch(error => {
@@ -41,4 +41,4 @@ export class ActivityComponent implements OnInit {
       this.message = 'Por favor, preencha todos os campos corretamente.';
     }
   }
-}
+}  

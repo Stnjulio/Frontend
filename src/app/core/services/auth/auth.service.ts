@@ -13,7 +13,7 @@ export class AuthService {
 
   async login(data: ILogin) {
     const {email, password} = data
-    const {accessToken, refreshToken} = await lastValueFrom (this.http.post<any>(`${environment.backend_url}/auth/login`, {email, password} ))
+    const {accessToken} = await lastValueFrom (this.http.post<ILogin>(`${environment.backend_url}/auth/login`, {email, password} ))
 
     if (!accessToken)return false;
     //slavar token na local storage

@@ -78,12 +78,27 @@ export class ActivityService {
 
   // Método para deletar uma atividade pelo ID
   async delete(id: string) {
-    const response = await lastValueFrom(
-      this.http.delete(`${environment.backend_url}/activity/delete${id}`)
-    );
-    if (!response) {
-      return false;
+    try {
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        throw new Error('Token não encontrado');
+      }
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      const response = await lastValueFrom(
+        this.http.delete(`${environment.backend_url}/activity/delete/${id}`, { headers })
+      );
+
+      if (!response) {
+        return false;
+      }
+      return true;
+
+    } catch (error) {
+      console.error('Erro ao excluir atividade', error);
+      throw new Error('Erro ao excluir atividade');
     }
-    return true;
   }
 }

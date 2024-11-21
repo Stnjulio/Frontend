@@ -1,28 +1,83 @@
+<!-- src/app/features/dashboard/pages/details/details.component.html -->
 <div class="details-container">
-    <h2>Vincular Pessoa a Atividade</h2>
-  
-    <!-- Mensagem de sucesso ou erro -->
-    <div *ngIf="message" class="message">
-      {{ message }}
-    </div>
-  
-    <!-- Formulário -->
-    <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
-      <label for="person">Pessoa</label>
-      <select id="person" formControlName="personId">
-        <option *ngFor="let person of people" [value]="person.id">
-          {{ person.nome }}
-        </option>
-      </select>
-  
-      <label for="activity">Atividade</label>
-      <select id="activity" formControlName="activityId">
-        <option *ngFor="let activity of activities" [value]="activity.id">
-          {{ activity.name }}
-        </option>
-      </select>
-  
-      <button type="submit" [disabled]="detailsForm.invalid">Vincular</button>
-    </form>
+  <h2>Vincular Pessoa a Atividade</h2>
+
+  <!-- Mensagem de sucesso ou erro -->
+  <div *ngIf="message" class="message">
+    {{ message }}
   </div>
-  
+
+  <!-- Formulário -->
+  <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+    <label for="person">Pessoa</label>
+    <select id="person" formControlName="personId">
+      <option *ngFor="let person of people" [value]="person.id">
+        {{ person.nome }}
+      </option>
+    </select>
+
+    <label for="activity">Atividade</label>
+    <select id="activity" formControlName="activityId">
+      <option *ngFor="let activity of activities" [value]="activity.id">
+        {{ activity.name }}
+      </option>
+    </select>
+
+    <button type="submit" [disabled]="detailsForm.invalid">Vincular</button>
+  </form>
+
+  <!-- Seção das Tabelas -->
+  <div class="tables-container">
+    <div class="table-container">
+      <h3>Pessoas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of people">
+            <td>{{ person.id }}</td>
+            <td>{{ person.nome }}</td>
+            <td>{{ person.telefone }}</td>
+            <td>
+              <!-- Botão de excluir -->
+              <button (click)="onDeletePerson(person.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <h3>Atividades</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let activity of activities">
+            <td>{{ activity.id }}</td>
+            <td>{{ activity.name }}</td>
+            <td>{{ activity.startDate | date }}</td>
+            <td>{{ activity.endDate | date }}</td>
+            <td>
+              <!-- Botão de excluir -->
+              <button (click)="onDeleteActivity(activity.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
