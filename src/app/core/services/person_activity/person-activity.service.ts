@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { IPersonActivity } from '../../../shared/interfaces/person_activity';
 import { environment } from '../../../../env/env';
 import { lastValueFrom } from 'rxjs';
-import { IPerson } from '../../../shared/interfaces/person';
+
 
 @Injectable({
   providedIn: 'root',

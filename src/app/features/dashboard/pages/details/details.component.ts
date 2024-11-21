@@ -8,6 +8,7 @@ import { IActivity } from '../../../../shared/interfaces/activity';
 import { IPerson } from '../../../../shared/interfaces/person';
 
 
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -18,8 +19,8 @@ export class DetailsComponent implements OnInit {
   people: IPerson[] = [];
   activities: IActivity[] = [];
   message = '';
-  selectedPersonDetails: any
-  selectedActivityDetails: any;
+  selectedPersonDetails!: IPerson[]
+  selectedActivityDetails!: IActivity[] 
 
   constructor(
     private fb: FormBuilder,
@@ -140,24 +141,24 @@ export class DetailsComponent implements OnInit {
     console.error('Erro ao exibir detalhes da atividade2:', error);
   }
 }
-async loadPersonDetails(id: string) {
-  try {
-    this.selectedPersonDetails = await this.personService.details(id);
-    this.message = '';
-  } catch (error) {
-    this.message = 'Erro ao carregar detalhes da pessoa.';
-    console.error('Erro:', error);
-  }
-}
+// async loadPersonDetails(id: string) {
+//   try {
+//     this.selectedPersonDetails = await this.personService.details(id);
+//     this.message = '';
+//   } catch (error) {
+//     this.message = 'Erro ao carregar detalhes da pessoa.';
+//     console.error('Erro:', error);
+//   }
+// }
 
-async loadActivityDetails(id: string) {
-  try {
-    this.selectedActivityDetails = await this.activityService.details(id);
-    this.message = '';
-  } catch (error) {
-    this.message = 'Erro ao carregar detalhes da atividade.';
-    console.error('Erro:', error);
-  }
-}
+// async loadActivityDetails(id: string) {
+//   try {
+//     this.selectedActivityDetails = await this.activityService.details(id);
+//     this.message = '';
+//   } catch (error) {
+//     this.message = 'Erro ao carregar detalhes da atividade.';
+//     console.error('Erro:', error);
+//   }
+// }
 
 }

@@ -49,7 +49,7 @@
             <td>{{ person.telefone }}</td>
             <td>
               <button (click)="onDeletePerson(person.id)">Excluir</button>
-              <button (click)="loadPersonDetails(person.id)">Detalhes</button>
+              <button (click)="onDetailPerson(person.id)">Detalhes</button>
             </td>
           </tr>
         </tbody>
@@ -76,7 +76,7 @@
             <td>{{ activity.endDate | date }}</td>
             <td>
               <button (click)="onDeleteActivity(activity.id)">Excluir</button>
-              <button (click)="loadActivityDetails(activity.id)">Detalhes</button>
+              <button (click)="onDetailActivity(activity.id)">Detalhes</button>
             </td>
           </tr>
         </tbody>
@@ -85,7 +85,7 @@
   </div>
 
   <!-- Detalhes da Pessoa -->
-  <div *ngIf="selectedPersonDetails" class="details-table">
+  <div *ngIf="onDetailPerson" class="details-table">
     <h3>Detalhes da Pessoa</h3>
     <table>
       <thead>
@@ -99,18 +99,27 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ selectedPersonDetails.id }}</td>
-          <td>{{ selectedPersonDetails.nome }}</td>
-          <td>{{ selectedPersonDetails.telefone }}</td>
-          <td>{{ selectedPersonDetails.endereco }}</td>
-          <td>{{ selectedPersonDetails.email }}</td>
+          <tr *ngFor="let person of people">
+          <td>{{ person.id }}</td>
+          <td>{{ person.nome }}</td>
+          <td>{{ person.telefone }}</td>
+          <td>{{ person.email }}</td>
+          <div *ngIf="person.endereco">
+            <td>{{ person.endereco.bairro }}</td> 
+            <td>{{ person.endereco.cep }}</td>
+            <td>{{ person.endereco.complemento }}</td>
+            <td>{{ person.endereco.localidade }}</td>
+            <td>{{ person.endereco.logradouro }}</td>
+            <td>{{ person.endereco.uf }}</td>
+
+          </div>         
         </tr>
       </tbody>
     </table>
   </div>
 
   <!-- Detalhes da Atividade -->
-  <div *ngIf="selectedActivityDetails" class="details-table">
+  <div *ngIf="onDetailActivity" class="details-table">
     <h3>Detalhes da Atividade</h3>
     <table>
       <thead>
@@ -123,12 +132,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ selectedActivityDetails.id }}</td>
-          <td>{{ selectedActivityDetails.name }}</td>
-          <td>{{ selectedActivityDetails.description }}</td>
-          <td>{{ selectedActivityDetails.startDate | date }}</td>
-          <td>{{ selectedActivityDetails.endDate | date }}</td>
+          <tr *ngFor="let activity of activities">
+            <td>{{ activity.id }}</td>
+            <td>{{ activity.name }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.startDate | date }}</td>
+            <td>{{ activity.endDate | date }}</td>
         </tr>
       </tbody>
     </table>
