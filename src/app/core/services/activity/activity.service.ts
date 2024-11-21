@@ -8,8 +8,7 @@ import { IActivity } from '../../../shared/interfaces/activity';
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService {
-  
+export class ActivityService {  
 
   constructor(private http: HttpClient) {}
 
@@ -47,13 +46,18 @@ export class ActivityService {
   }
 
   // Método para buscar uma atividade pelo ID
-  async get(id: string) {
-    const activity = await lastValueFrom(
-      this.http.get<IActivity>(`${environment.backend_url}/activity/detail${id}`)
-    );
-    if (!activity) {
-      return false;
+  async details(id: string) {
+    const token = localStorage.getItem('token');
+      
+    if (!token) {
+      throw new Error('Token não encontrado');
     }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const activity = await lastValueFrom(
+      this.http.get<IActivity>(`${environment.backend_url}/activity/detail/${id}`, { headers })
+    );
     return activity;
   }
 
@@ -65,12 +69,12 @@ export class ActivityService {
       throw new Error('Token não encontrado');
     }
 
-    // Configura o cabeçalho com o token
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     const activities = await lastValueFrom(
       this.http.get<IActivity[]>(`${environment.backend_url}/activity/list`, { headers })
     );
-    if (!activities) {
+     {if (!activities)
       return [];
     }
     return activities;

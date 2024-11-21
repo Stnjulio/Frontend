@@ -43,9 +43,19 @@ export class PersonService {
   }
 
   // Método para buscar uma pessoa pelo ID
-  async get(id: string) {
-    console.log(id);
-    return true;
+  async details(id: string) {
+    const token = localStorage.getItem('token');
+      
+    if (!token) {
+      throw new Error('Token não encontrado');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const people = await lastValueFrom(
+      this.http.get<IPerson>(`${environment.backend_url}/person/detail/${id}`, { headers })
+    );
+    return people;
   }
     
   // Método para listar todas as pessoas
@@ -61,6 +71,9 @@ export class PersonService {
     const people = await lastValueFrom(
       this.http.get<IPerson[]>(`${environment.backend_url}/person/list`, { headers })
     );
+    {if (!people)
+      return [];
+    }
     return people;
   }
 
