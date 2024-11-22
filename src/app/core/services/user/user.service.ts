@@ -17,7 +17,7 @@ export class UserService {
     } = data;
     try {
       const user = await lastValueFrom(
-        this.http.post<IRegister>(`${environment.backend_url}/user/create`, {name, email, password, telefone, nome, endereco})
+        this.http.post<IRegister>(`${environment.backend_url}/user/create`, {nome,telefone, email, endereco, name, password })
       );
       if (!user) {
         return false;

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-dashboard-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.less'],
+  selector: 'app-dashboard-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.less'],
 })
-export class IndexComponent  {
+export class MenuComponent  {
 
   readonly BASE_PATH ='/'
   

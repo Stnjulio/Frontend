@@ -1,32 +1,13 @@
 <div class="register-container">
   <h2>Cadastro</h2>
-
+  {{registerForm.value | json}}
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <!-- Nome -->
     <div class="form-group full-width">
-      <label for="name">Nome</label>
+      <label for="name">Nickname</label>
       <input id="name" type="text" formControlName="name" class="form-control" placeholder="Digite seu nome" />
       <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
-        O nome é obrigatório e deve ter pelo menos 3 caracteres.
-      </div>
-    </div>
-
-    <!-- Email e Telefone -->
-    <div class="form-row">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Digite seu email" />
-        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
-          Insira um email válido.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="telefone">Telefone</label>
-        <input id="telefone" type="text" formControlName="telefone" class="form-control" placeholder="Digite seu telefone" />
-        <div *ngIf="registerForm.get('telefone')?.invalid && registerForm.get('telefone')?.touched" class="error">
-          Insira um telefone válido.
-        </div>
+        O Nick é obrigatório e deve ter pelo menos 3 caracteres.
       </div>
     </div>
 
@@ -49,11 +30,40 @@
       </div>
     </div>
 
-    <!-- Endereço em duas linhas -->
+    <!-- Email e Telefone -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Digite seu email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+          Insira um email válido.
+        </div>
+      </div>
+
+      <!-- Telefone -->
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" type="text" formControlName="telefone" class="form-control" placeholder="Digite seu telefone" />
+        <div *ngIf="registerForm.get('telefone')?.invalid && registerForm.get('telefone')?.touched" class="error">
+          Insira um telefone válido.
+        </div>
+      </div>
+    </div>
+
+    <!-- Nome -->
+    <div class="form-group full-width">
+      <label for="nome">Nome Completo</label>
+      <input id="nome" type="text" formControlName="nome" class="form-control" placeholder="Digite seu nome completo" />
+      <div *ngIf="registerForm.get('nome')?.invalid && registerForm.get('nome')?.touched" class="error">
+        O nome é obrigatório e deve ter pelo menos 3 caracteres.
+      </div>
+    </div>
+
+    <!-- Endereço -->
     <div class="form-group full-width">
       <label for="cep">CEP</label>
       <input id="cep" type="text" formControlName="cep" class="form-control" placeholder="Digite seu CEP" />
-      <div *ngIf="registerForm.get('endereco.cep')?.invalid && registerForm.get('endereco.cep')?.touched" class="error">
+      <div *ngIf="registerForm.get('cep')?.invalid && registerForm.get('cep')?.touched" class="error">
         O CEP é obrigatório.
       </div>
     </div>
@@ -68,6 +78,11 @@
         <label for="bairro">Bairro</label>
         <input id="bairro" type="text" formControlName="bairro" class="form-control" placeholder="Digite o bairro" />
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="complemento">complemento</label>
+      <input id="complemento" type="text" formControlName="complemento" class="form-control" placeholder="Digite o complemento" />
     </div>
 
     <div class="form-row">

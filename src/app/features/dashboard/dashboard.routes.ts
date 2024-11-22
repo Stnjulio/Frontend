@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { IndexComponent } from './pages/index/index.component';
+import { MenuComponent } from './pages/menu/menu.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { PersonComponent } from './pages/person/person.component';
 import { DetailsComponent } from './pages/details/details.component';
@@ -8,7 +8,7 @@ import { DetailsComponent } from './pages/details/details.component';
 const dashboardRoutes: Routes = [
   {
     path: '',
-    component: IndexComponent,
+    component: MenuComponent,
     children: [
       
       {
